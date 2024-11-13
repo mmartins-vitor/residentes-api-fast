@@ -1,6 +1,8 @@
 from residentsapi.contrib.models import *
 from datetime import datetime
 
+from residentsapi.times.models import TimeModel
+
 class ResidenteModel(BaseModel):
     __tablename___ = 'residentes'
 
@@ -11,6 +13,8 @@ class ResidenteModel(BaseModel):
     idade: Mapped[int] = mapped_column(Integer, nullable=False)
     genero: Mapped[str] = mapped_column(String[1], nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+
+    
     
     
     
