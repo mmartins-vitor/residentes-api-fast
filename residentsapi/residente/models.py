@@ -1,6 +1,7 @@
 from residentsapi.contrib.models import *
 from datetime import datetime
 
+from residentsapi.setor.models import SetorModel
 from residentsapi.times.models import TimeModel
 
 class ResidenteModel(BaseModel):
@@ -14,7 +15,14 @@ class ResidenteModel(BaseModel):
     genero: Mapped[str] = mapped_column(String[1], nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
 
-    
+    # evita importacao circular?
+    # relacionamento de residente com time
+    time: Mapped[TimeModel] = relationship(back_populates='residente')
+    time_id : Mapped[int] = mapped_column(ForeignKey('times.pk_id'))
+
+    # relacionamento de residente com setor
+    setor: Mapped[SetorModel] = relationship(back_populates='residente')
+    setor_id : Mapped[int] = mapped_column(ForeignKey('setores.pk_id'))
     
     
     
